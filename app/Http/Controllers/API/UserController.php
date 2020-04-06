@@ -25,13 +25,6 @@ class UserController extends Controller
     }
     public function register(RegistrationFormRequest $request)
     {
-        if(!Permissions::hasPermission("users",config('app.can_add')))
-        {
-            return response()->json([
-                'success'   =>  false,
-                'message'      =>  'You have no permission'
-            ], 200);
-        }
         $user=$this->userRepository->create($request->all());
          return response()->json([
             'success'   =>  true,
