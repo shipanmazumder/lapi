@@ -5,11 +5,12 @@ namespace App\Repository\Eloquent;
 
 
 use App\Helpers\Permissions;
+use App\Repository\EloquentInterface;
 use App\Repository\UserRepositoryInterface;
 use App\User;
 use Illuminate\Support\Facades\Hash;
 
-class UserRepository implements UserRepositoryInterface
+class UserRepository implements UserRepositoryInterface,EloquentInterface
 {
 
     public function all()
@@ -64,5 +65,38 @@ class UserRepository implements UserRepositoryInterface
         }
         $user->save();
         return $user;
+    }
+
+    public function total_ban_user()
+    {
+        // TODO: Implement total_ban_user() method.
+        return User::where("is_ban",false)->count();
+    }
+
+    public function total_active_user()
+    {
+        // TODO: Implement total_active_user() method.
+        return User::where("is_ban",true)->count();
+    }
+
+    public function total_user()
+    {
+        // TODO: Implement total_user() method.
+        return User::where("role_id","=",3)->count();
+    }
+
+    public function pagination($search_key, $filter)
+    {
+        // TODO: Implement pagination() method.
+        $users=User::orderBy("id","desc")->with("role")->where("role_id",3);
+        if($filter!='')
+        {
+            $users=$users->where('is_ban',$filter);
+        }
+        if($search_key!='')
+        {
+            $users=$users->where('email', 'like', '%' . $search_key . '%');
+        }
+        return $users->paginate(10);
     }
 }

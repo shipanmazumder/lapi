@@ -12,7 +12,7 @@ class Permissions
     public function __construct()
     {
     }
-    public static function hasPermission(string  $module,string $type)
+    public static function hasPermission(string  $module,$type)
     {
         $role_name=auth()->user()->role->name;
         if($role_name=="Admin")

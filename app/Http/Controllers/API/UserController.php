@@ -43,7 +43,7 @@ class UserController extends Controller
 
     public function update(RegistrationFormRequest $request,$id)
     {
-        if(!Permissions::hasPermission("users",config('app.can_update')))
+        if(!Permissions::hasPermission("users","can_update"))
         {
             return response()->json([
                 'success'   =>  false,
@@ -74,7 +74,7 @@ class UserController extends Controller
 
     public function ban($id)
     {
-        if(!Permissions::hasPermission("users",config('app.can_ban')))
+        if(!Permissions::hasPermission("users","can_ban"))
         {
             return response()->json([
                 'success'   =>  false,

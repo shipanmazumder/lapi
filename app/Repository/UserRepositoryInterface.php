@@ -6,14 +6,11 @@ namespace App\Repository;
 
 interface UserRepositoryInterface
 {
-    public function all();
-
-    public function create(array $data);
-
-    public function findById($id);
-
-    public function update(array $data,$id);
-
-    public function delete($id);
     public function ban($id);
+
+    public function total_ban_user();
+    public function total_active_user();
+    public function total_user();
+
+    public function pagination($search_key,$filter);
 }
