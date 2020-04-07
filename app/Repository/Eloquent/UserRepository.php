@@ -70,13 +70,13 @@ class UserRepository implements UserRepositoryInterface,EloquentInterface
     public function total_ban_user()
     {
         // TODO: Implement total_ban_user() method.
-        return User::where("is_ban",false)->count();
+        return User::where("is_ban",false)->where("role_id","=",3)->count();
     }
 
     public function total_active_user()
     {
         // TODO: Implement total_active_user() method.
-        return User::where("is_ban",true)->count();
+        return User::where("is_ban",true)->where("role_id","=",3)->count();
     }
 
     public function total_user()
